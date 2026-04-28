@@ -1,0 +1,10 @@
+name: My First Pipeline
+on: [push]
+  branches:
+    - main
+jobs:
+  Display-Success-push-event:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Git hub got a push event and the pipeline is successful"
+
