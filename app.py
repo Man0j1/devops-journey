@@ -1,3 +1,5 @@
+from app import wrong_function
+
 def add(a, b):
     return a + b
 
