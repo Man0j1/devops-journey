@@ -4,9 +4,11 @@ on:
     branches:
       - main
 jobs:
-  Display-Success-push-event:
+  run-linux-commands:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v5
       - name: Display Success Message
         run: echo "Git hub got a push event and the pipeline is successful"
       - name: Run linux commands
@@ -15,6 +17,5 @@ jobs:
           date
           pwd
           ls -la
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      
 
