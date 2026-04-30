@@ -76,6 +76,7 @@ jobs:
 
   run:
     needs: [ "build", "lint", "test" ]
+    if: always()
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -88,7 +89,7 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run python app
-      if: always() && github.event_name == 'push'
+      if: github.event_name == 'push'
       run: |
         python app.py
         echo "Build successful"
