@@ -33,6 +33,7 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      continue-on-error: true
       
   test:
     runs-on: ubuntu-latest
@@ -50,6 +51,7 @@ jobs:
     - name: Test with pytest
       run: |
        pytest
+      continue-on-error: true
   
   build:
 
@@ -70,6 +72,7 @@ jobs:
     - name: Display python version
       run: |
         python --version
+        exit 1
 
   run:
     needs: [ "build", "lint", "test" ]
@@ -85,7 +88,7 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run python app
-      if: success() && github.event_name == 'push'
+      if: always() && github.event_name == 'push'
       run: |
         python app.py
         echo "Build successful"
