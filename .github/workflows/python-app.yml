@@ -89,7 +89,7 @@ jobs:
       uses: docker/build-push-action@v7
       with:
         push: true
-        tags: ${{ vars.DOCKERHUB_USERNAME }}/my-python-app:${GITHUB_SHA}
+        tags: ${{ vars.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${GITHUB_SHA}
       
 
   run:
